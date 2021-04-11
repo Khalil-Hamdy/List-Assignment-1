@@ -1,32 +1,72 @@
-# Prerequisites
-*.d
-
-# Compiled Object files
-*.slo
-*.lo
-*.o
-*.obj
-
-# Precompiled Headers
-*.gch
-*.pch
-
-# Compiled Dynamic libraries
-*.so
-*.dylib
-*.dll
-
-# Fortran module files
-*.mod
-*.smod
-
-# Compiled Static libraries
-*.lai
-*.la
-*.a
-*.lib
-
-# Executables
-*.exe
-*.out
-*.app
+#include<bits/stdc++.h>
+#define null 0
+using namespace std;
+class linked_list{
+private:
+    struct node
+    {
+        char value;
+        node* next;
+    };
+    typedef node* ptr;
+    ptr new_node()
+    {
+        ptr p = (ptr)malloc(sizeof(node));
+        return p;
+    }
+    ptr list;
+    int siz;
+public:
+    linked_list()
+    {
+        list=null;
+        siz=0;
+    }
+     void add_node(char v)
+    {
+        ptr l = list;
+        ptr p = new_node();
+        p->value = v;
+        if(list==null)
+        {
+            p->next = list;
+            list = p;
+        }
+        else
+        {
+            while (l->next != null)
+            {
+                l = l->next;
+            }
+            l->next = p;
+            p->next = null;
+        }
+        siz++;
+    }
+    void show()
+    {
+        if(list==null)
+        {
+            cout<<"list is Empty!\n";
+            return;
+        }
+        ptr l = list;
+        while (l->next != null)
+        {
+            cout << l->value<<" ";
+            l = l->next;
+        }
+        cout<<l->value<<endl;
+    }
+};
+int main()
+{
+    string s;
+    linked_list l;
+    cin>>s;
+    for(int i=0;i<s.length();i++){
+        l.add_node(s[i]);
+    }
+    l.show();
+    return 0;
+}
